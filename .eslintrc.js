@@ -32,7 +32,7 @@ module.exports = {
   },
 
   rules: {
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-console': 'off',
     'brace-style': 'off',
     'comma-dangle': ['error', 'always-multiline'],
     'constructor-super': 'error',
