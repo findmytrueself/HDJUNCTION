@@ -5,7 +5,6 @@ const PostIt: React.FC = () => {
     <>
       <div
         css={css`
-          border: solid;
           width: 80vw;
           height: 100vh;
         `}

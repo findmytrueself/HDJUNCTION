@@ -7,7 +7,7 @@ const Board = () => {
     <>
       <div
         css={css`
-          border: solid;
+          background: lightgray;
           text-align: center;
         `}
       >
