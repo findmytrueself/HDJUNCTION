@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-const PostIt = () => {
+const PostIt: React.FC = () => {
   return (
     <>
       <div

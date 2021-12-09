@@ -2,9 +2,14 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
 
-const BoardList = () => {
+const BoardList: React.FC = () => {
   //   const [input, setInput] = useState<HTMLInputElement | null>(null);
   // const [list, setList] = useState<string[]>([]);
+  const lists = [
+    { id: 1, text: 'Awesome Board' },
+    { id: 2, text: 'BrainStorming' },
+    { id: 3, text: 'interview' },
+  ];
   const [input, setInput] = useState<string>('');
   console.log(input);
   const listAddHandler = () => {
@@ -21,7 +26,7 @@ const BoardList = () => {
         `}
       >
         <ul>
-          {/* {list.map((el) => console.log(el))} */}
+          {lists.map((el) => console.log(el))}
           <input onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setInput(e.target.value)} />
           <button onClick={listAddHandler}>+</button>
         </ul>

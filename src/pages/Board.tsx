@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import BoardList from '../components/board/BoardList';
-import PostIt from '../components/board/Postit';
+import BoardList from '../components/BoardList';
+import PostIt from '../components/Postit';
 const Board = () => {
   return (
     <>
