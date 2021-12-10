@@ -2,6 +2,11 @@
 import { css } from '@emotion/react';
 import BoardList from '../components/BoardList';
 import PostIt from '../components/Postit';
+export interface ListProps {
+  id: number;
+  text: string;
+}
+
 const Board = () => {
   return (
     <>

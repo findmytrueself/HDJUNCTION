@@ -1,11 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
-
-interface ListProps {
-  id: number;
-  text: string;
-}
+import { ListProps } from '../pages/Board';
 
 const BoardList: React.FC = () => {
   const [isInput, setIsInput] = useState<boolean>(false);
