@@ -2,25 +2,29 @@
 import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
 import { ListProps } from '../pages/Board';
-
+import useAddList from '../hooks/useAddList';
+import useRemoveList from '../hooks/useRemoveList';
+import useLists from '../hooks/useLists';
 const BoardList: React.FC = () => {
   const [isInput, setIsInput] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
-  const [list, setList] = useState<ListProps[]>([]);
+  // const [list, setList] = useState<ListProps[]>([]);
+  const lists = useLists();
+  const addList = useAddList();
+  const removeList = useRemoveList();
   const listAddHandler = () => {
     setIsInput(true);
   };
   const listSubmitHandler = () => {
     if (input.length > 0) {
-      const tempList = { id: Math.random(), text: input };
-      setList((prevList) => [...prevList, tempList]);
+      addList(input);
       setIsInput(false);
     } else {
       window.alert('1글자 이상 입력해주세요.');
     }
   };
-  const listRemoveHandler = (el: ListProps) => {
-    setList(list.filter((item) => el.id !== item.id));
+  const listRemoveHandler = (list: ListProps) => {
+    removeList(list.id);
   };
   useEffect(() => {
     !isInput ? setInput('') : null;
@@ -35,12 +39,16 @@ const BoardList: React.FC = () => {
         `}
       >
         <ul>
-          {list.map((el) => (
-            <div key={el.id}>
-              <li>{el.text}</li>
-              <button onClick={() => listRemoveHandler(el)}>삭제하기</button>
-            </div>
-          ))}
+          {lists.map((list) =>
+            list.text.length > 0 ? (
+              <div key={list.id}>
+                <li>
+                  {list.text}
+                  <button onClick={() => listRemoveHandler(list)}>삭제하기</button>
+                </li>
+              </div>
+            ) : null,
+          )}
           {isInput ? (
             <div>
               <input onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setInput(e.target.value)} />

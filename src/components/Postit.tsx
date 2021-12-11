@@ -1,6 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import useLists from '../hooks/useLists';
 const PostIt: React.FC = () => {
+  const lists = useLists();
+  console.log(lists);
   return (
     <>
       <div
@@ -9,7 +12,7 @@ const PostIt: React.FC = () => {
           height: 100vh;
         `}
       >
-        <h1>Awesome Board</h1>
+        <h1>{lists[0].text}</h1>
         <div>Postit Content</div>
       </div>
     </>
