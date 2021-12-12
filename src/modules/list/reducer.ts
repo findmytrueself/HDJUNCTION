@@ -1,7 +1,6 @@
 import { createReducer } from 'typesafe-actions';
 import { ListAction, ListState } from './types';
 import { SELECT_LIST, UPDATE_LIST } from './actions';
-
 export const initialState: ListState = [{ id: 0, text: '' }];
 
 const reducer = createReducer<ListState, ListAction>(initialState, {
