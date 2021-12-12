@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
-import { addList } from '../modules/list';
+import { addList } from '../modules/lists';
 
 export default function useAddList() {
   const dispatch = useDispatch();
-  return useCallback((text) => dispatch(addList(text)), [dispatch]);
+  return useCallback((title) => dispatch(addList(title)), [dispatch]);
 }

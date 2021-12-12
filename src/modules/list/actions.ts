@@ -1,8 +1,16 @@
 import { createAction } from 'typesafe-actions';
-// action 정의
-export const ADD_LIST = 'list/ADD_LIST' as const;
-export const REMOVE_LIST = 'list/REMOVE_LIST' as const;
 
-// actionCreate 함수정의
-export const addList = createAction(ADD_LIST)<string>();
-export const removeList = createAction(REMOVE_LIST)<number>();
+export const SELECT_LIST = 'list/SELECT_LIST' as const;
+export const UPDATE_LIST = 'list/UPDATE_LIST' as const;
+
+export type POSTIT = {
+  postit: { title: string; content: string; hide: boolean };
+};
+interface SELECT {
+  id: number;
+  text: string;
+  postit: POSTIT;
+}
+
+export const selectList = createAction(SELECT_LIST)<SELECT>();
+export const updateList = createAction(UPDATE_LIST)<string>();

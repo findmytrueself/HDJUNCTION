@@ -1,13 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import React from 'react';
 import BoardList from '../components/BoardList';
 import PostIt from '../components/Postit';
+
 export interface ListProps {
   id: number;
   text: string;
 }
 
-const Board = () => {
+const Board: React.FC = () => {
   return (
     <>
       <div
@@ -24,7 +26,14 @@ const Board = () => {
         `}
       >
         <BoardList />
-        <PostIt />
+        <div
+          css={css`
+            width: 80vw;
+            height: 100vh;
+          `}
+        >
+          <PostIt />
+        </div>
       </div>
     </>
   );

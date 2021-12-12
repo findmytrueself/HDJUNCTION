@@ -4,14 +4,17 @@ import { css } from '@emotion/react';
 import { ListProps } from '../pages/Board';
 import useAddList from '../hooks/useAddList';
 import useRemoveList from '../hooks/useRemoveList';
+import useSelectList from '../hooks/useSelectList';
 import useLists from '../hooks/useLists';
+
 const BoardList: React.FC = () => {
   const [isInput, setIsInput] = useState<boolean>(false);
   const [input, setInput] = useState<string>('');
-  // const [list, setList] = useState<ListProps[]>([]);
+  const [isSelected, setIsSelected] = useState<boolean>(false); //TODO 로직추가
   const lists = useLists();
   const addList = useAddList();
   const removeList = useRemoveList();
+  const selectList = useSelectList();
   const listAddHandler = () => {
     setIsInput(true);
   };
@@ -25,6 +28,10 @@ const BoardList: React.FC = () => {
   };
   const listRemoveHandler = (list: ListProps) => {
     removeList(list.id);
+  };
+  const listClickHandler = (list: ListProps) => {
+    setIsSelected(!isSelected);
+    selectList(list);
   };
   useEffect(() => {
     !isInput ? setInput('') : null;
@@ -42,10 +49,15 @@ const BoardList: React.FC = () => {
           {lists.map((list) =>
             list.text.length > 0 ? (
               <div key={list.id}>
-                <li>
+                <li
+                  css={css`
+                    cursor: pointer;
+                  `}
+                  onClick={() => listClickHandler(list)}
+                >
                   {list.text}
-                  <button onClick={() => listRemoveHandler(list)}>삭제하기</button>
                 </li>
+                <button onClick={() => listRemoveHandler(list)}>삭제하기</button>
               </div>
             ) : null,
           )}

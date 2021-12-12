@@ -1,4 +1,4 @@
-import { removeList } from '../modules/list/actions';
+import { removeList } from '../modules/lists/actions';
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
 
