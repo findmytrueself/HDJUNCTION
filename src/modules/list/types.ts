@@ -1,4 +1,4 @@
-import { PostitType } from './../../components/PostIt';
+import { PostitType } from '../../components/Postit';
 import { ActionType } from 'typesafe-actions';
 
 import * as actions from './actions';
