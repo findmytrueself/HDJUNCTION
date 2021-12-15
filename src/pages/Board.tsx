@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import React from 'react';
 import BoardList from '../components/BoardList';
-import PostIt from '../components/Postit';
+import PostItBoard from '../components/PostitBoard';
 
 export interface ListProps {
   id: number;
@@ -32,7 +32,7 @@ const Board: React.FC = () => {
             height: 100vh;
           `}
         >
-          <PostIt />
+          <PostItBoard />
         </div>
       </div>
     </>

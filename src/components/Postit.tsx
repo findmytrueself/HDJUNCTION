@@ -1,58 +1,50 @@
 /** @jsxImportSource @emotion/react */
+import React, { useState } from 'react';
 import { css } from '@emotion/react';
-import React, { useRef, useState } from 'react';
-import useLists from '../hooks/useLists';
-import useList from '../hooks/useList';
-// import useUpdate from '../hooks/useUpdate';
-import { AiOutlineCloseSquare, AiOutlineLine } from 'react-icons/ai';
-import useUpdate from '../hooks/useUpdate';
-const PostIt: React.FC = () => {
-  const lists = useLists();
-  const list = useList();
-  const update = useUpdate();
-  const ref = useRef<HTMLDivElement>(null);
-  const [isUpdate, setIsUpdate] = useState<boolean>(false);
-  const [updateInput, setUpdateInput] = useState<string>('');
-  const updateInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUpdateInput(e.target.value);
+// import { AiOutlineCloseSquare, AiOutlineLine } from 'react-icons/ai';
+import useAddPostit from '../hooks/useAddPostit';
+// import useList from '../hooks/useList';
+export type PostitType = {
+  id: number;
+  title: string;
+  content: string;
+  hide: boolean;
+};
+interface SETISPOST {
+  setIsPost: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const PostIt: React.FC<SETISPOST> = ({ setIsPost }) => {
+  const addPost = useAddPostit();
+  const [title, setTitle] = useState<string>('');
+  const [isTitle, setIsTitle] = useState<boolean>(false);
+  const [content, setContent] = useState<string>('');
+  const [isContent, setIsContent] = useState<boolean>(false);
+  const [postitNum, setPostitNum] = useState<number>(1);
+  console.log(postitNum);
+  const [isPostEnd, setIsPostEnd] = useState<boolean>(false);
+
+  const postit: PostitType = { id: postitNum, title, content, hide: false };
+  console.log(postit.id, 'object');
+  const titleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
   };
-  const updateHandler = async () => {
-    setIsUpdate(!isUpdate);
-    if (isUpdate) {
-      const temp = await { id: list[0].id, text: updateInput };
-      update(temp);
+  const contentHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setContent(e.target.value);
+  };
+  const addPostHandler = () => {
+    if (isTitle && isContent) {
+      setPostitNum(() => postitNum + 1);
+      setIsPostEnd(true);
+      setIsPost(false);
+      addPost(postit);
+    } else {
+      window.alert('제목과 내용을 작성 후 완료 버튼을 눌러주세요');
     }
   };
 
-  const hideHandler = () => {
-    console.log('mini');
-  };
-  const closeHandler = () => {
-    console.log('close');
-  };
   return (
     <>
-      {lists.length > 1 ? (
-        <div>
-          {!isUpdate ? (
-            <span
-              css={css`
-                font-size: 2em;
-                cursor: pointer;
-              `}
-              ref={ref}
-              onClick={updateHandler}
-            >
-              {list[0].text}
-            </span>
-          ) : (
-            <div>
-              <input type="text" onChange={(e) => updateInputHandler(e)} />
-              <button onClick={updateHandler}>완료</button>
-            </div>
-          )}
-        </div>
-      ) : null}
       <div
         css={css`
           border: solid;
@@ -65,36 +57,74 @@ const PostIt: React.FC = () => {
             background: #e0e0e0;
           `}
         >
-          title
-          <span />
-          <span
-            css={css`
-              float: right;
-              font-size: larger;
-              cursor: pointer;
-            `}
-            onClick={closeHandler}
-          >
-            <AiOutlineCloseSquare />
-          </span>
-          <span
-            css={css`
-              float: right;
-              font-size: large;
-              cursor: pointer;
-            `}
-            onClick={hideHandler}
-          >
-            <AiOutlineLine />
-          </span>
+          {!isTitle ? (
+            <span>
+              <input
+                type="text"
+                placeholder="제목을 입력해주세요"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>): void => titleHandler(e)}
+              />
+              <button onClick={() => setIsTitle(true)}>완료</button>
+            </span>
+          ) : (
+            <span
+              css={css`
+                cursor: pointer;
+              `}
+              onClick={() => setIsTitle(false)}
+            >
+              {title}
+            </span>
+          )}
+          {/* <span>
+            <span
+              css={css`
+                float: right;
+                font-size: larger;
+                cursor: pointer;
+              `}
+              // onClick={closeHandler}
+            >
+              <AiOutlineCloseSquare />
+            </span>
+            <span
+              css={css`
+                float: right;
+                font-size: large;
+                cursor: pointer;
+              `}
+              onClick={hideHandler}
+            >
+              <AiOutlineLine />
+            </span>
+          </span> */}
         </div>
         <div
           css={css`
             height: 30vh;
           `}
         >
-          content
+          {!isContent ? (
+            <span>
+              <input
+                type="text"
+                placeholder="내용을 입력해주세요"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>): void => contentHandler(e)}
+              />
+              <button onClick={() => setIsContent(true)}>완료</button>
+            </span>
+          ) : (
+            <span
+              css={css`
+                cursor: pointer;
+              `}
+              onClick={() => setIsContent(false)}
+            >
+              {content}
+            </span>
+          )}
         </div>
+        {!isPostEnd ? <button onClick={() => addPostHandler()}>포스트잇작성하기</button> : null}
       </div>
     </>
   );
