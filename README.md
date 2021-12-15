@@ -21,8 +21,8 @@
 * 예전에 새로고침해도 redux상태값을 저장하려면 redux-persist라는 라이브러리를 이용하면 쉽게 구현할 수 있다고 자료를 찾아 본 적이 있는데 마지막 요구사항은 그 부분을 묻는거 같았다, 타입스크립트 문법을 적응하는데 시간이 오래걸려서 생각만하고 따로 적용하지 못해 아쉬웠다. 
 ---
 # 추가적으로 사용한 라이브러리
-    "@emotion/react": "^11.7.0", -> CSS in JS className을 지정 안해줘도 된다. jsx html태그 내부에 css style을 줄수가있다.
-    "@emotion/styled": "^11.6.0", -> CSS in JS className을 지정 안해줘도 된다. 지역적으로 관리되는 CSS, 여러개의 태그를 묶어서 스타일을 줄 수 있다.
+    "@emotion/react": "^11.7.0", -> CSS in JS className을 지정 안해줘도 된다. jsx html태그 내부에 css style을 줄수가있다. props를 이용하여 동적으로 CSS구현
+    "@emotion/styled": "^11.6.0", -> CSS in JS className을 지정 안해줘도 된다. 지역적으로 관리되는 CSS, 여러개의 태그를 묶어서 스타일을 줄 수 있다. props를 이용하여 동적으로 CSS구현가능
     "react-icons": "^4.3.1",-> icon을 사용하기위해 
     "redux-devtools-extension": "^2.13.9", -> 크롬브라우저에서 리덕스 디버깅을 위해 사용
     "redux-saga": "^1.1.3", -> 설치했으나 도입을 하지않았다, thunk미들웨어를 통해 비동기구현 가능하므로 따로 공부하지 않았다.
