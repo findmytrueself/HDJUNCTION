@@ -1,5 +1,5 @@
 import { createAction } from 'typesafe-actions';
-import { PostitType } from './../../components/PostIt';
+import { PostitType } from '../../components/Postit';
 // action 정의
 export const ADD_LISTS = 'list/ADD_LISTS' as const;
 export const REMOVE_LISTS = 'list/REMOVE_LISTS' as const;

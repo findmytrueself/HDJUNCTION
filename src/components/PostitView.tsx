@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { AiOutlineCloseSquare, AiOutlineLine } from 'react-icons/ai';
-import { PostitType } from './PostIt';
+import { PostitType } from './Postit';
 import useHide from '../hooks/useHide';
 import useList from '../hooks/useList';
 import useDelete from '../hooks/useDelete';

@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 import useLists from '../hooks/useLists';
 import useList from '../hooks/useList';
 import useUpdate from '../hooks/useUpdate';
-import PostIt from './PostIt';
+import PostIt from './Postit';
 import PostitView from './PostitView';
 
 const PostItBoard: React.FC = () => {

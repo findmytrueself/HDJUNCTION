@@ -1,4 +1,4 @@
-import { PostitType } from './../../components/PostIt';
+import { PostitType } from '../../components/Postit';
 import { createReducer } from 'typesafe-actions';
 import { ListsAction, ListsState } from './types';
 import { ADD_LISTS, REMOVE_LISTS, UPDATE_LISTS, ADD_POSTIT, UPDATE_POSTIT } from './actions';

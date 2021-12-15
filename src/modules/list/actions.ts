@@ -1,4 +1,4 @@
-import { PostitType } from './../../components/PostIt';
+import { PostitType } from '../../components/Postit';
 import { createAction } from 'typesafe-actions';
 // list Action객체
 export const SELECT_LIST = 'list/SELECT_LIST' as const;
